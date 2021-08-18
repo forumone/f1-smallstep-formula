@@ -1,0 +1,1 @@
+Salt Stack Formula for installing small step ssh CA
