@@ -1,0 +1,5 @@
+{% set bastion = "jumpbox.byf1.dev" %}
+{% set team = "forumone" %}
+{% set client = pillar.vhosts.client %}
+{% set project = pillar.vhosts.project %}
+{% set token = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/smallstep/smallstep_token" --with-decryption | jq -r .Parameter.Value') %} 
