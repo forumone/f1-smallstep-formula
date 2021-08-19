@@ -30,13 +30,13 @@
     - pattern: |
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
-          AuthorizedPrincipalsCommand
+          AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - repl: |
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - require:
-      - {{ user }}_ssh_match_user
+      - /etc/ssh/scripts/{{ user }}-okta-sync.sh
 
 sshd_{{ user }}_reload:
   service.running:
