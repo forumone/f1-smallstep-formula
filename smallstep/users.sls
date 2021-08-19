@@ -1,4 +1,6 @@
 {% from "smallstep/map.jinja" import client, project with context %}
+include:
+  - smallstep.install
 
 /etc/ssh/scripts/:
   file.directory:
@@ -22,6 +24,7 @@
         user: "ssh-{{ client }}-{{ user }}"
     - require:
       - /etc/ssh/scripts/
+      - install_smallstep
 
 {{ user }}_ssh_match_user:
   file.replace:
