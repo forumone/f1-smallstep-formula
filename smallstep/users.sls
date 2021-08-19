@@ -34,7 +34,8 @@
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
-    -require: /etc/ssh/scripts/{{ user }}-okta-sync.sh
+    - require:
+      - {{ user }}_ssh_match_user
 
 sshd_{{ user }}_reload:
   service.running:
