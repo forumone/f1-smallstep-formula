@@ -20,7 +20,8 @@
     - mode: 700
     - context:
         user: "ssh-{{ client }}-{{ user }}"
-    - require: /etc/ssh/scripts/
+    - require: 
+      - /etc/ssh/scripts/
 
 {{ user }}_ssh_match_user:
   file.replace:
