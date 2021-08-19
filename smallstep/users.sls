@@ -20,7 +20,7 @@
     - mode: 700
     - context:
         user: "ssh-{{ client }}-{{ user }}"
-    - require: 
+    - require:
       - /etc/ssh/scripts/
 
 {{ user }}_ssh_match_user:
@@ -30,7 +30,7 @@
     - pattern: |
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
-          AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
+          AuthorizedPrincipalsCommand
     - repl: |
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
