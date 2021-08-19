@@ -1,3 +1,3 @@
 include:
-  - install
-  - users
+  - smallstep.install
+  - smallstep.users
