@@ -57,6 +57,7 @@ install_smallstep:
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - require:
       - /etc/ssh/scripts/{{ user }}-okta-sync.sh
+      - install_smallstep
 
 sshd_{{ user }}_reload:
   service.running:
