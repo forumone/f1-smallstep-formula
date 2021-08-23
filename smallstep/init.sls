@@ -58,6 +58,8 @@ install_smallstep:
     - require:
       - /etc/ssh/scripts/{{ user }}-okta-sync.sh
       - install_smallstep
+    - order:
+      - last
 
 sshd_{{ user }}_reload:
   service.running:
@@ -99,6 +101,8 @@ sshd_{{ user }}_reload:
     - require:
       - /etc/ssh/scripts/{{ user }}-okta-sync.sh
       - install_smallstep
+    - order:
+      - last
 
 sshd_{{ user }}_reload:
   service.running:
