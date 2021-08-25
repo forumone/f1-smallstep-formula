@@ -1,4 +1,3 @@
-
 {% import "smallstep/map.jinja" as smallstep %}
 
 /opt/smallstep/install:
