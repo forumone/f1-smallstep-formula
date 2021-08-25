@@ -16,7 +16,7 @@ smallstep_installer:
 install_smallstep:
   cmd.run:
     - cwd: /opt/smallstep/install
-    - name: bash ./ssh-host.sh --bastion "{ bastion }}" --tag "Type=utility" --tag "Project={{ project }}" --tag "Client={{ client }}" --team {{ team }} --token {{ token }}
+    - name: bash ./ssh-host.sh --bastion "{{ bastion }}" --tag "Type=Utility" --tag "Project={{ project }}" --tag "Client=SSH-{{ client }}" --team {{ team }} --token {{ token }}
     - unless: test -e /bin/step
     - stateful: True
 
@@ -49,6 +49,7 @@ install_smallstep:
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
+    - require: /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - onlyif:
       - fun: file.search
         path: /etc/ssh/sshd_config
@@ -87,6 +88,7 @@ sshd_{{ user }}_reload:
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
+    - require: /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - onlyif:
       - fun: file.search
         path: /etc/ssh/sshd_config
