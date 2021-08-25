@@ -3,4 +3,5 @@
 {% set client = pillar.client %}
 {% set project = pillar.project %}
 {% set suffix = "byf1.dev" %}
-{% set token = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/smallstep/smallstep_token" --with-decryption | jq -r .Parameter.Value') %} 
+{% set token = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/smallstep/smallstep_token" --with-decryption | jq -r .Parameter.Value') %}
+{% set hostname = salt['cmd.shell']('hostname') %} 

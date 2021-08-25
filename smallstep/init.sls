@@ -1,4 +1,4 @@
-{% from "smallstep/map.jinja" import bastion, project, suffix, client, team, token with context %}
+{% from "smallstep/map.jinja" import bastion, hostname, project, suffix, client, team, token with context %}
 
 /opt/smallstep/install:
   file.directory:
@@ -16,7 +16,7 @@ smallstep_installer:
 install_smallstep:
   cmd.run:
     - cwd: /opt/smallstep/install
-    - name: bash ./ssh-host.sh --bastion "{{ bastion }}" --hostname $(hostname) --tag "Type=Utility" --tag "Project={{ project }}" --tag "Client=SSH-{{ client }}" --team "{{ team }}" --token {{ token }}
+    - name: bash ./ssh-host.sh --bastion "{{ bastion }}" --hostname "{{ hostname }}" --tag "Type=Utility" --tag "Project={{ project }}" --tag "Client=SSH-{{ client }}" --team "{{ team }}" --token {{ token }}
     - unless: test -e /bin/step
     - stateful: True
 
