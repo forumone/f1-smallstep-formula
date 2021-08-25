@@ -37,7 +37,6 @@ install_smallstep:
     - user: root
     - group: root
     - mode: 700
-    - stateful: True
     - context:
         user: "ssh-{{ client }}-{{ user }}"
     - require:
@@ -81,7 +80,6 @@ sshd_{{ user }}_reload:
     - user: root
     - group: root
     - mode: 700
-    - stateful: True
     - context:
         user: "ssh-{{ client }}-{{ user }}"
     - require:
@@ -91,7 +89,6 @@ sshd_{{ user }}_reload:
   file.replace:
     - append_if_not_found: True
     - name: /etc/ssh/sshd_config
-    - stateful: True
     - pattern: |
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
