@@ -49,7 +49,8 @@ install_smallstep:
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
-    - require: /etc/ssh/scripts/{{ user }}-okta-sync.sh
+    - require: 
+      - /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - onlyif:
       - fun: file.search
         path: /etc/ssh/sshd_config
@@ -88,7 +89,8 @@ sshd_{{ user }}_reload:
         Match User {{ user }}
           AuthorizedPrincipalsCommandUser root
           AuthorizedPrincipalsCommand /etc/ssh/scripts/{{ user }}-okta-sync.sh
-    - require: /etc/ssh/scripts/{{ user }}-okta-sync.sh
+    - require:
+      - /etc/ssh/scripts/{{ user }}-okta-sync.sh
     - onlyif:
       - fun: file.search
         path: /etc/ssh/sshd_config
