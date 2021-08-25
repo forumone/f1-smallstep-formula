@@ -16,7 +16,7 @@ smallstep_installer:
 install_smallstep:
   cmd.run:
     - cwd: /opt/smallstep/install
-    - name: bash ./ssh-host.sh --bastion {{ bastion }} --hostname "{{ project }}.{{ suffix }}" --tag "Type=utility" --tag "Project={{ project }}" --tag "Client={{ client }}" --team {{ team }} --token {{ token }}
+    - name: bash ./ssh-host.sh --bastion "{ bastion }}" --tag "Type=utility" --tag "Project={{ project }}" --tag "Client={{ client }}" --team {{ team }} --token {{ token }}
     - unless: test -e /bin/step
     - stateful: True
 
