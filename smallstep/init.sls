@@ -65,7 +65,7 @@ sshd_{{ user }}_reload:
   {% endfor %}
 {% endif %}
 
-{% if pillar.node.sites is defined %}
+{% if pillar.node is defined %}
   {% for site, name in pillar.node.sites.items() %}
   {% set user = name.user %}
 
