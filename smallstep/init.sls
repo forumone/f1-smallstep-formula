@@ -10,7 +10,7 @@
 smallstep_installer:
   file.managed:
     - name: /opt/smallstep/install/ssh-host.sh
-    - source: ttps://files.smallstep.com/ssh-host.shh
+    - source: https://files.smallstep.com/ssh-host.sh
     - skip_verify: True
 
 install_smallstep:
