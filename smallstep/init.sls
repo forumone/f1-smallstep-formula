@@ -10,15 +10,18 @@
 smallstep_installer:
   file.managed:
     - name: /opt/smallstep/install/ssh-host.sh
-    - source: https://files.smallstep.com/ssh-host.sh
+    - source: ttps://files.smallstep.com/ssh-host.shh
     - skip_verify: True
 
 install_smallstep:
   cmd.run:
     - cwd: /opt/smallstep/install
-    - name: bash ./ssh-host.sh --bastion "{{ smallstep.bastion }}" --hostname "{{ smallstep.hostname }}" --tag "Type=Utility" --tag "Project={{ smallstep.project }}" --tag "Client=ssh-{{ smallstep.client }}" --team "{{ smallstep.team }}" --token {{ smallstep.token }}
+    - name: bash ./ssh-host.sh --bastion "{{ smallstep.bastion }}" --hostname "{{ smallstep.hostname }}" --tag "Type=Utility" --tag "Project={{ smallstep.project }}" --tag "Client={{ smallstep.client }}" --team "{{ smallstep.team }}" --token {{ smallstep.token }}
     - unless: test -e /bin/step
-    - stateful: True
+    - output_loglevel: quiet
+    - hide_output: False
+    - creates: /bin/step
+#    - success_retcodes: 
 
 /etc/ssh/scripts/:
   file.directory:
