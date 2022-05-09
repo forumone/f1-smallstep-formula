@@ -84,6 +84,20 @@ sshd_{{ user }}_reload:
     - require:
       - /etc/ssh/scripts/
 
+/root/admins_only.sh:
+  file.managed:
+    - source: salt://smallstep/files/admins_only.sh
+    - user: root
+    - group: root
+    - mode: 700
+
+/root/authorized_principals_cmd.sh:
+  file.managed:
+    - source: salt://smallstep/files/authorized_principals_cmd.sh
+    - user: root
+    - group: root
+    - mode: 700
+
 {{ user }}_ssh_match_user:
   file.append:
     - name: /etc/ssh/sshd_config
