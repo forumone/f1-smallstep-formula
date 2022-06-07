@@ -16,7 +16,13 @@ smallstep_installer:
 install_smallstep:
   cmd.run:
     - cwd: /opt/smallstep/install
-    - name: bash ./ssh-host.sh --bastion "{{ smallstep.bastion }}" --hostname "{{ smallstep.hostname }}" --tag "Type=Utility" --tag "Project={{ smallstep.project }}" --tag "Client={{ smallstep.client }}" --team "{{ smallstep.team }}" --token {{ smallstep.token }}
+    - env:
+        - STEP_SSH_TEAM: {{ smallstep.team }}
+        - STEP_SSH_TOKEN: {{ smallstep.token }}
+        - STEP_SSH_TAGS: "Type=Utility Project={{ smallstep.project }} Client={{ smallstep.client }}"
+        - STEP_SSH_HOSTNAME: {{ smallstep.hostname }}
+        - STEP_SSH_BASTION: {{ smallstep.bastion }}
+    - name: bash ./ssh-host.sh
     - unless: test -e /bin/step
     - output_loglevel: quiet
     - hide_output: False
