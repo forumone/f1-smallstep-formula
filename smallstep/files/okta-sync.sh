@@ -2,7 +2,7 @@
 #
 TOKEN=$(aws --region us-east-2 ssm get-parameter --name "/forumone/okta/read_only_okta_token" --with-decryption | jq -r '.Parameter.Value')
 
-ID=$(aws ssm get-parameter --name /forumone/usaid-climatelinks/okta/groups/{{ user }} \
+ID=$(aws ssm get-parameter --name /forumone/{{ client }}/okta/groups/{{ user }} \
       --region us-east-2 --with-decryption --output text --query Parameter.Value)
 
 curl -s -X GET \
