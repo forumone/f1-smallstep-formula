@@ -48,6 +48,7 @@ install_smallstep:
     - mode: 700
     - context:
         user: "ssh-{{ smallstep.client }}-{{ user }}"
+        client: {{ smallstep.client }}
     - require:
       - /etc/ssh/scripts/
 
@@ -87,6 +88,7 @@ sshd_{{ user }}_reload:
     - mode: 700
     - context:
         user: "ssh-{{ smallstep.client }}-{{ user }}"
+        client: {{ smallstep.client }}
     - require:
       - /etc/ssh/scripts/
 
