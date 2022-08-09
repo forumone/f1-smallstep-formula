@@ -38,7 +38,11 @@ install_smallstep:
 
 {% if pillar.vhosts.sites is defined %}
   {% for site, name in pillar.vhosts.sites.items() %}
+  {% if name.user is defined %}
   {% set user = name.user %}
+  {% else %}
+  {% set user = site %}
+  {% endif %}
 /etc/ssh/scripts/{{ user }}-okta-sync.sh:
   file.managed:
     - source: salt://smallstep/files/okta-sync.sh
@@ -77,7 +81,11 @@ sshd_{{ user }}_reload:
 
 {% if pillar.node is defined %}
   {% for site, name in pillar.node.sites.items() %}
+  {% if name.user is defined %}
   {% set user = name.user %}
+  {% else %}
+  {% set user = site %}
+  {% endif %}
 
 /etc/ssh/scripts/{{ user }}-okta-sync.sh:
   file.managed:
