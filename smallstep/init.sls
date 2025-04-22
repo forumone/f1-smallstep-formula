@@ -22,6 +22,7 @@ install_smallstep:
         - STEP_SSH_TAGS: "Type=Utility Project={{ smallstep.project }} Client={{ smallstep.client }}"
         - STEP_SSH_HOSTNAME: {{ smallstep.hostname }}
         - STEP_SSH_BASTION: {{ smallstep.bastion }}
+        - STEP_SSH_VERSION: "0.26.2"
     - name: bash ./ssh-host.sh
     - unless: test -e /bin/step
     - output_loglevel: quiet
