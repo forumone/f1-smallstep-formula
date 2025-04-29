@@ -25,7 +25,7 @@ install_smallstep:
         - STEP_SSH_VERSION: "0.26.2"
     - name: bash ./ssh-host.sh
     - unless: test -e /bin/step
-    - output_loglevel: quiet
+    - output_loglevel: debug
     - hide_output: False
     - creates: /bin/step
 #    - success_retcodes: 
